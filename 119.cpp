@@ -66,12 +66,12 @@ int ddpp[1005];
 int w[1005],v[1005];
 int main()
 {
-    int t,m;
-    cin>>t>>m;
-    for(int i=1;i<=m;i++)
-    {
-        cin>>w[i]>>v[i];
-    }
+    // int t,m;
+    // cin>>t>>m;
+    // for(int i=1;i<=m;i++)
+    // {
+    //     cin>>w[i]>>v[i];
+    // }
     // for (int i = 1; i <= m; i++)
     // {
     //     for(int j = 1;j <=t; j++)
@@ -84,13 +84,13 @@ int main()
     // }
     // cout<<dp[m][t];
 
-    for(int i=1;i<=m;i++)
-    {
-        for(int j=t;j>=0;j--)
-        {
-            if(j>=w[i])
-            ddpp[j]=max(ddpp[j],ddpp[j-w[i]]+v[i]);
-        }
-    }
-    cout<<ddpp[t];
+    // for(int i=1;i<=m;i++)
+    // {
+    //     for(int j=t;j>=0;j--)
+    //     {
+    //         if(j>=w[i])
+    //         ddpp[j]=max(ddpp[j],ddpp[j-w[i]]+v[i]);
+    //     }
+    // }
+    // cout<<ddpp[t];
 }
