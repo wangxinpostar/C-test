@@ -21,8 +21,14 @@ void E(int x)
     }
 }
 
+struct T
+{
+    int a,b,n;
+}m[100];
+
 int main()
 {
+
     // int n,m;
     // cin>>n;
     // E(100005);
