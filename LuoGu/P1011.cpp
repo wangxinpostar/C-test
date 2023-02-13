@@ -1,32 +1,15 @@
-#include<bits/stdc++.h>
-#include<iostream>
-#include<cmath>
-#include<algorithm>
+#include<cstdio>
 using namespace std;
-int dp[55],ddpp[55];
-int main()
-{
-    dp[0]=dp[1]=dp[2]=1;
-    for(int i=3;i<55;i++)
-    {
-        dp[i]+=dp[i-1]+dp[i-2];
-    }
-    dp[0]=dp[1]=dp[2]=0;
-    for(int i=3;i<55;i++)
-    {
-        ddpp[i]=dp[i]-dp[i-1];
-    }
-    int a,n,nn,m,x;
-    cin>>a>>nn>>m>>x;
-    if(x<3)cout<<a;
-    else
-    for(int j=1;j<=100;j++)
-    {
-        n=nn-1;
-        int ans=a+ddpp[n-1]*a+ddpp[n-2]*j;
-        if(ans==m)
-        {
-            cout<<a+ddpp[x-1]*a+ddpp[x-2]*j;
-        }
-    }
+int sum1[25],sum2[25];
+int main(){
+	int a,n,m,x;
+	scanf("%d%d%d%d",&a,&n,&m,&x);
+	sum1[2]=1,sum1[3]=2;
+	for(int i=4;i<n;i++){
+		sum1[i]=sum1[i-1]+sum1[i-2]-1;
+		sum2[i]=sum2[i-1]+sum2[i-2]+1;
+	}
+	int b=(m-a*sum1[n-1])/sum2[n-1];
+	printf("%d",a*sum1[x]+b*sum2[x]);
+	return 0;
 }
