@@ -1,9 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 int n, l, m, x;
-vector<int> s[2000];
-unordered_set<int> se;
-int p[2000][2000] = {0};
+int s[1500][1500], ss[10000];
+int p[1500] = {0};
 int main()
 {
     cin >> n >> l;
@@ -13,46 +12,50 @@ int main()
         for (int j = 0; j < m; j++)
         {
             cin >> x;
-            s[x].push_back(i + 1);
+            s[x][ss[x]++] = i + 1;
         }
     }
     cin >> n;
     for (int i = 0; i < n; i++)
     {
         cin >> x;
-        p[x][x] = 1;
-        if (s[x].size())
+        int ans = 0;
+        if (ss[x])
         {
-            queue<int> t, g;
-            se = unordered_set<int>();
-            for (int y : s[x])
+            queue<int> t;
+            unordered_set<int> se;
+            for (int y = 0; y < ss[x]; y++)
             {
-                if (p[x][y] == 0 && p[y][x] == 0)
+                if (p[x] == 0)
                 {
-                    p[x][y] = p[y][x] = 1;
-                    t.push(y);
+                    t.push(s[x][y]);
+                    se.insert(s[x][y]);
+                    ans++;
                 }
             }
-            int c = 1;
-            while (t.size() && c <= l)
+            p[x] = 1;
+            int c = 1, T = ss[x];
+            while (c < l)
             {
-                int k = t.front();
-                t.pop();
-                se.insert(k);
-                for (int j : s[k])
+                int r = 0;
+                for (int v = 0; v < T; v++)
                 {
-                    if (p[k][j] == 0 && p[j][k] == 0)
+                    int k = t.front();
+                    t.pop();
+                    for (int j = 0; j < ss[k]; j++)
                     {
-                        p[k][j] = p[k][j] = 1;
-                        g.push(j);
+                        if (p[k] == 0)
+                        {
+                            t.push(s[k][j]);
+                            se.insert(s[k][j]);
+                            ans++;
+                            r++;
+                        }
                     }
+                    p[k] = 1;
                 }
-                if (!t.size())
-                {
-                    c++;
-                    t = g;
-                    g = queue<int>();
-                }
+                c++;
+                T = r;
             }
             memset(p, 0, sizeof(p));
             cout << se.size() - se.count(x) << "\n";
