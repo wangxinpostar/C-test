@@ -7,12 +7,12 @@ int main()
   long long k=5*a+2*b;
   long long ans=(n/k)*7;
   long long s=n%k;
-  for(int i=0;i<5,s>0;i++)
+  for(int i=0;i<5&&s>0;i++)
   {
     s-=a;
     ans+=1;
   }
-  for(int i=0;i<2,s>0;i++)
+  for(int i=0;i<2&&s>0;i++)
   {
     s-=b;
     ans+=1;
