@@ -188,10 +188,10 @@
 //   }
 //   return 0;
 // }
-//#include<bits/stdc++.h>
-//using namespace std;
-//const int mod=1e9+7;
-//long long qmi(long long x,long long n,long long mod)
+// #include<bits/stdc++.h>
+// using namespace std;
+// const int mod=1e9+7;
+// long long qmi(long long x,long long n,long long mod)
 //{
 //  long long res=1;
 //  while(n)
@@ -205,7 +205,7 @@
 //  }
 //  return res%mod;
 //}
-//long long solve(int a,int b,int mod)
+// long long solve(int a,int b,int mod)
 //{
 //    if(a<b)return 0;
 //    long long x=1,y=1;
@@ -216,48 +216,48 @@
 //    }
 //    return x*qmi(y,mod-2,mod)%mod;
 //}
-//int main()
+// int main()
 //{
 //  int n,a,b;
 //  cin>>n>>a>>b;
 //  cout<<(qmi(2,n,mod)-solve(n,a,mod)-solve(n,b,mod)-1+mod+mod)%mod;
 //}
-#include<cmath>
-#include<iostream>
-#include<cstring>
-const long long mod=1e9+7;
-using namespace std;
-long long qmi(long long x,long long n,long long mod)
-{
-	long long res=1;
-	while(n)
-	{
-		if(n&1)
-		{
-			res=res*x%mod;
-		}
-		x=x*x%mod;
-		n>>=1;
-	}
-	return res%mod;
-}
-long long solve(long long n,long long a,long long mod)
-{
-	long long x=1,y=1;
-	for(int i=a,j=1;j<=a;j++)
-	{
-		x=x*i%mod;
-		y=y*j%mod;
-	}
-	return x*y*qmi(y,mod-2,mod);
-}
-int main()
-{
-	int t,n;
-	cin>>t;
-	for(int i=0;i<t;i++)
-	{
-		cin>>n;
-		cout<<(qmi(2,n,mod)-1-n+(const int)1e9*mod)%mod;
-	}
-}
+// #include<cmath>
+// #include<iostream>
+// #include<cstring>
+// const long long mod=1e9+7;
+// using namespace std;
+// long long qmi(long long x,long long n,long long mod)
+// {
+// 	long long res=1;
+// 	while(n)
+// 	{
+// 		if(n&1)
+// 		{
+// 			res=res*x%mod;
+// 		}
+// 		x=x*x%mod;
+// 		n>>=1;
+// 	}
+// 	return res%mod;
+// }
+// long long solve(long long n,long long a,long long mod)
+// {
+// 	long long x=1,y=1;
+// 	for(int i=a,j=1;j<=a;j++)
+// 	{
+// 		x=x*i%mod;
+// 		y=y*j%mod;
+// 	}
+// 	return x*y*qmi(y,mod-2,mod);
+// }
+// int main()
+// {
+// 	int t,n;
+// 	cin>>t;
+// 	for(int i=0;i<t;i++)
+// 	{
+// 		cin>>n;
+// 		cout<<(qmi(2,n,mod)-1-n+(const int)1e9*mod)%mod;
+// 	}
+// }
