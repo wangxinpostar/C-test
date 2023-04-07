@@ -1,58 +1,54 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-int m[35][35];
+int m[35][35], p[35][35], d[] = {-1, 0, 1, 0, -1};
 int n;
-void dfs(int x, int y)
+void bfs(int x, int y)
 {
-    if (x > 0 && x < n && y > 0 && y < n && m[x][y] == 0)
+    queue<pair<int, int>> q;
+    q.push({x, y});
+    m[x][y] = 3;
+    p[x][y] = true;
+    while (q.size())
     {
-        m[x][y] = 2;
-        dfs(x + 1, y);
-        dfs(x, y + 1);
-        dfs(x - 1, y);
-        dfs(x, y - 1);
+        pair<int, int> ver = q.front();
+        q.pop();
+        int x = ver.first, y = ver.second;
+        for (int i = 0; i < 4; i++)
+        {
+            int x2 = x + d[i];
+            int y2 = y + d[i + 1];
+            if (x2 >= 0 && x2 <= n + 1 && y2 >= 0 && y2 <= n + 1 && m[x2][y2] == 0 && !p[x2][y2])
+            {
+                p[x2][y2] = true;
+                m[x2][y2] = 3;
+                q.push({x2, y2});
+            }
+        }
     }
 }
 int main()
 {
-
     cin >> n;
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i <= n; i++)
     {
-        for (int j = 0; j < n; j++)
+        for (int j = 1; j <= n; j++)
         {
             cin >> m[i][j];
         }
     }
-    for (int i = 1; i + 1 < n; i++)
+    bfs(0, 0);
+    for (int i = 1; i <= n; i++)
     {
-        int l = 0, r = n - 1;
-        while (!m[i][l])
+        for (int j = 1; j <= n; j++)
         {
-            l++;
+            if (m[i][j] == 3)
+                cout << 0 << " ";
+            if (m[i][j] == 0)
+                cout << 2 << " ";
+            if (m[i][j] == 1)
+                cout << 1 << " ";
         }
-        while (!m[i][r])
-        {
-            r--;
-        }
-        if (r >= l)
-        {
-            for (int k = l; k <= r; k++)
-            {
-                if (m[i][k] == 0)
-                {
-                    dfs(i, k);
-                    for (int i = 0; i < n; i++)
-                    {
-                        for (int j = 0; j < n; j++)
-                        {
-                            cout << m[i][j] << " ";
-                        }
-                        cout << "\n";
-                    }
-                    return 0;
-                }
-            }
-        }
+        cout << "\n";
     }
+    return 0;
 }
