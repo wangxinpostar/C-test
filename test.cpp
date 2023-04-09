@@ -261,59 +261,183 @@
 // 		cout<<(qmi(2,n,mod)-1-n+(const int)1e9*mod)%mod;
 // 	}
 // }
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
+// using namespace std;
+// int m[35][35], p[35][35], d[] = {-1, 0, 1, 0, -1};
+// int n;
+// void bfs(int x, int y)
+// {
+//     queue<pair<int, int>> q;
+//     q.push({x, y});
+//     m[x][y] = 3;
+//     p[x][y] = true;
+//     while (q.size())
+//     {
+//         pair<int, int> ver = q.front();
+//         q.pop();
+//         int x = ver.first, y = ver.second;
+//         for (int i = 0; i < 4; i++)
+//         {
+//             int x2 = x + d[i];
+//             int y2 = y + d[i + 1];
+//             if (x2 >= 0 && x2 <= n + 1 && y2 >= 0 && y2 <= n + 1 && m[x2][y2] == 0 && !p[x2][y2])
+//             {
+//                 p[x2][y2] = true;
+//                 m[x2][y2] = 3;
+//                 q.push({x2, y2});
+//             }
+//         }
+//     }
+// }
+// int main()
+// {
+
+//     cin >> n;
+//     for (int i = 1; i <= n; i++)
+//     {
+//         for (int j = 1; j <= n; j++)
+//         {
+//             cin >> m[i][j];
+//         }
+//     }
+
+//     bfs(0, 0);
+//     for (int i = 1; i <= n; i++)
+//     {
+//         for (int j = 1; j <= n; j++)
+//         {
+//             if (m[i][j] == 3)
+//                 cout << 0 << " ";
+//             if (m[i][j] == 0)
+//                 cout << 2 << " ";
+//             if (m[i][j] == 1)
+//                 cout << 1 << " ";
+//         }
+//         cout << "\n";
+//     }
+//     return 0;
+// }
+// #include<iostream>
+// using namespace std;
+// const int N=1e8+10;
+// int m[N],t;
+// bool p[N];
+// int main()
+// {
+//     int n,q,x;
+//     cin>>n>>q;
+//     for(int i=2;i<=n;i++)
+//     {
+//         if(!p[i])m[++t]=i;
+//         for(int j=1;j<=t&&i*m[j]<=n;j++)
+//         {
+//             p[i*m[j]]=true;
+//             if(i%m[j]==0)break;
+//         }
+//     }
+//     while(q--)
+//     {
+//         cin>>x;
+//         cout<<m[x]<<"\n";
+//     }
+//     return 0;
+// }
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef pair<int, int> pii;
+// const int N = 6e5;
+// struct edge
+// {
+//     int from, to, val, next;
+// } mp[N];
+// int ans[N], p[N], cnt, n, m, t, from, to, val, sum;
+// bool st[N];
+// void add(int from, int to, int val)
+// {
+//     mp[++t].next = p[from];
+//     mp[t].from = from;
+//     mp[t].to = to;
+//     mp[t].val = val;
+//     p[from] = t;
+// }
+// void dist()
+// {
+//     priority_queue<pii, vector<pii>, greater<>> heap;
+//     heap.push({0, 1});
+//     ans[1] = 0;
+//     while (heap.size() && cnt < n)
+//     {
+//         int d = heap.top().first;
+//         int ver = heap.top().second;
+//         heap.pop();
+//         if (st[ver])
+//             continue;
+//         st[ver] = true;
+//         cnt++;
+//         sum += d;
+//         for (int i = p[ver]; i; i = mp[i].next)
+//         {
+//             int j = mp[i].to;
+//             if (ans[j] > mp[i].val)
+//             {
+//                 ans[j] = mp[i].val;
+//                 heap.push({ans[j], j});
+//             }
+//         }
+//     }
+// }
+// int main()
+// {
+//     cin >> n >> m;
+//     for (int i = 1; i <= m; i++)
+//     {
+//         cin >> from >> to >> val;
+//         add(from, to, val);
+//         add(to, from, val);
+//     }
+//     memset(ans,0x3f,sizeof(ans));
+//     dist();
+//     if (cnt == n)
+//     {
+//         cout << sum;
+//     }
+//     else
+//     {
+//         cout << "orz";
+//     }
+//     return 0;
+// }
+#include<iostream>
+#include<cmath>
+#include<string>
+#include<map>
+#include<set>
+#include<vector>
+#include<deque>
+#include<queue>
+#include<unordered_map>
+#include<unordered_set>
+#include<functional>
+#include<algorithm>
 using namespace std;
-int m[35][35], p[35][35], d[] = {-1, 0, 1, 0, -1};
-int n;
-void bfs(int x, int y)
-{
-    queue<pair<int, int>> q;
-    q.push({x, y});
-    m[x][y] = 3;
-    p[x][y] = true;
-    while (q.size())
-    {
-        pair<int, int> ver = q.front();
-        q.pop();
-        int x = ver.first, y = ver.second;
-        for (int i = 0; i < 4; i++)
-        {
-            int x2 = x + d[i];
-            int y2 = y + d[i + 1];
-            if (x2 >= 0 && x2 <= n + 1 && y2 >= 0 && y2 <= n + 1 && m[x2][y2] == 0 && !p[x2][y2])
-            {
-                p[x2][y2] = true;
-                m[x2][y2] = 3;
-                q.push({x2, y2});
-            }
-        }
-    }
-}
+int dp[100005],m[100005];
 int main()
 {
-
-    cin >> n;
-    for (int i = 1; i <= n; i++)
+    int n,ans=0,x;
+    cin>>n;
+    for(int i=0;i<n;i++)cin>>m[i];
+    for(int i=0;i<n;i++)cin>>x;
+    for(int i=0;i<n;i++)
     {
-        for (int j = 1; j <= n; j++)
+        dp[i]=1;
+        for(int j=0;j<i;j++)
         {
-            cin >> m[i][j];
+            if(m[j]<m[i])
+            {
+                dp[i]=max(dp[i],dp[j]+1);
+            }
         }
+        ans=max(ans,dp[i]);
     }
-
-    bfs(0, 0);
-    for (int i = 1; i <= n; i++)
-    {
-        for (int j = 1; j <= n; j++)
-        {
-            if (m[i][j] == 3)
-                cout << 0 << " ";
-            if (m[i][j] == 0)
-                cout << 2 << " ";
-            if (m[i][j] == 1)
-                cout << 1 << " ";
-        }
-        cout << "\n";
-    }
-    return 0;
+    cout<<ans;
 }
