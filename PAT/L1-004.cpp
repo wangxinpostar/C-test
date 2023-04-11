@@ -7,4 +7,5 @@ int main()
     cin >> x;
     cout << "Celsius = " << int(5 * (x - 32) / 9) << "\n";
     return 0;
+    
 }
