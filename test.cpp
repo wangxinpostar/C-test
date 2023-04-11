@@ -40,7 +40,7 @@
 //// // // int m[35][35];
 // int n;
 // void dfs(int x, int y)
-// {
+// { 
 //     if (x > 0 && x < n && y > 0 && y < n && m[x][y] == 0)
 //     {
 //         m[x][y] = 2;
