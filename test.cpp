@@ -40,7 +40,7 @@
 //// // // int m[35][35];
 // int n;
 // void dfs(int x, int y)
-// { 
+// {
 //     if (x > 0 && x < n && y > 0 && y < n && m[x][y] == 0)
 //     {
 //         m[x][y] = 2;
@@ -407,37 +407,39 @@
 //     }
 //     return 0;
 // }
-#include<iostream>
-#include<cmath>
-#include<string>
-#include<map>
-#include<set>
-#include<vector>
-#include<deque>
-#include<queue>
-#include<unordered_map>
-#include<unordered_set>
-#include<functional>
-#include<algorithm>
+#include <iostream>
+#include <cmath>
+#include <string>
+#include <map>
+#include <set>
+#include <vector>
+#include <deque>
+#include <queue>
+#include <unordered_map>
+#include <unordered_set>
+#include <functional>
+#include <algorithm>
 using namespace std;
-int dp[100005],m[100005];
+int dp[100005], m[100005];
 int main()
 {
-    int n,ans=0,x;
-    cin>>n;
-    for(int i=0;i<n;i++)cin>>m[i];
-    for(int i=0;i<n;i++)cin>>x;
-    for(int i=0;i<n;i++)
+    int n, ans = 0, x;
+    cin >> n;
+    for (int i = 0; i < n; i++)
+        cin >> m[i];
+    for (int i = 0; i < n; i++)
+        cin >> x;
+    for (int i = 0; i < n; i++)
     {
-        dp[i]=1;
-        for(int j=0;j<i;j++)
+        dp[i] = 1;
+        for (int j = 0; j < i; j++)
         {
-            if(m[j]<m[i])
+            if (m[j] < m[i])
             {
-                dp[i]=max(dp[i],dp[j]+1);
+                dp[i] = max(dp[i], dp[j] + 1);
             }
         }
-        ans=max(ans,dp[i]);
+        ans = max(ans, dp[i]);
     }
-    cout<<ans;
+    cout << ans;
 }
