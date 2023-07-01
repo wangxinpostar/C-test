@@ -1,39 +1,39 @@
-#include <functional>
-#include <vector>
-#include <string>
-#include <cstring>
 #include <iostream>
-#include <cmath>
-#include <deque>
-#include <unordered_map>
-#include <unordered_set>
-#include <algorithm>
 using namespace std;
-char a[1000005], b[1000005];
-int kmp[1000005];
+string p, s;
+int ne[1000005];
 int main()
 {
-    cin >> a >> b;
-    kmp[0] = kmp[1] = 0;
-    int len1 = strlen(a), len2 = strlen(b);
-    int k = 0;
-    for (int i = 1; i < len2; i++)
+    cin >> s >> p;
+
+    int m = p.size();
+    int n = s.size();
+
+    p = 'p' + p;
+    s = 's' + s;
+
+    for (int i = 2, j = 0; i <= m; i++)
     {
-        while (k && b[i] != b[k])
-            k = kmp[k];
-        kmp[i + 1] = b[i] == b[k] ? ++k : 0;
+        while (j && p[i] != p[j + 1])
+            j = ne[j];
+        if (p[i] == p[j + 1])
+            j++;
+        ne[i] = j;
     }
-    k = 0;
-    for (int i = 0; i < len1; i++)
+    for (int i = 1, j = 0; i <= n; i++)
     {
-        while (k && a[i] != b[k])
-            k = kmp[k];
-        k += a[i] == b[k] ? 1 : 0;
-        if (k == len2)
-            cout << i - len2 + 2 << "\n";
+        while (j && s[i] != p[j + 1])
+            j = ne[j];
+        if (s[i] == p[j + 1])
+            j++;
+        if (j == m)
+        {
+            cout << i - j + 1 << '\n';
+            j = ne[j];
+        }
     }
-    for (int i = 1; i <= len2; i++)
+    for (int i = 1; i <= m; i++)
     {
-        cout << kmp[i] << " ";
+        cout << ne[i] << ' ';
     }
 }
