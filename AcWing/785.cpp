@@ -1,24 +1,21 @@
 #include <iostream>
 using namespace std;
-const int N = 10e6 + 10;
+const int N = 1e6 + 10;
 int q[N];
 void quick_sort(int q[], int l, int r)
 {
     if (l >= r)
         return;
-
     int x = q[l + r >> 1], i = l - 1, j = r + 1;
-
     while (i < j)
     {
         while (q[++i] < x)
             ;
-        while (q[++j] > x)
+        while (q[--j] > x)
             ;
         if (i < j)
             swap(q[i], q[j]);
     }
-
     quick_sort(q, l, j);
     quick_sort(q, j + 1, r);
 }

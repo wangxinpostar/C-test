@@ -1,17 +1,15 @@
 #include <iostream>
+#include <string>
 using namespace std;
+const int N = 1e6 + 10;
+int ne[N];
 string p, s;
-int ne[1000005];
 int main()
 {
     cin >> s >> p;
-
-    int m = p.size();
-    int n = s.size();
-
-    p = 'p' + p;
-    s = 's' + s;
-
+    int m = p.size(), n = s.size();
+    s = "s" + s;
+    p = "p" + p;
     for (int i = 2, j = 0; i <= m; i++)
     {
         while (j && p[i] != p[j + 1])
